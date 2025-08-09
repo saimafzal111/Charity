@@ -36,7 +36,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-3"> {/* Added spacing */}
             <NavLink to="/" className="flex items-center space-x-3">
               <img src={LogoImage} alt="Hope Foundation Logo" className="h-14 w-16" /> {/* Larger logo */}
-              <span className="text-2xl font-bold text-gray-800">Hope Foundation</span>
+              <span className="text-2xl font-bold text-gray-800">Hopefy</span>
             </NavLink>
           </div>
 
