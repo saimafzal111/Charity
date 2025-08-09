@@ -1,4 +1,5 @@
-import { Heart, Phone, Mail, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import footerImage from "../assets/logo-charity.png";
 
 const Footer = () => {
   return (
@@ -8,16 +9,16 @@ const Footer = () => {
           {/* Logo and Description */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <Heart className="h-8 w-8 text-red-600" />
-              <span className="text-2xl font-bold">Hope Foundation</span>
+              <img src={footerImage} alt="Hope Foundation Logo" className="h-14 w-16 rounded-full" />
+              <span className="text-2xl font-bold">Hopefy</span>
             </div>
             <p className="text-gray-300 mb-4 leading-relaxed">
               "We are a registered charity organization working in Pakistan for education, healthcare, and poverty alleviation. With your donations, we are improving thousands of lives."
             </p>
             <div className="flex space-x-4">
-              <Facebook className="h-6 w-6 text-gray-400 hover:text-white cursor-pointer transition-colors" />
-              <Twitter className="h-6 w-6 text-gray-400 hover:text-white cursor-pointer transition-colors" />
-              <Instagram className="h-6 w-6 text-gray-400 hover:text-white cursor-pointer transition-colors" />
+              <Facebook className="h-6 w-6 text-gray-400 hover:text-red-600 cursor-pointer transition-colors" />
+              <Twitter className="h-6 w-6 text-gray-400 hover:text-red-600 cursor-pointer transition-colors" />
+              <Instagram className="h-6 w-6 text-gray-400 hover:text-red-600 cursor-pointer transition-colors" />
             </div>
           </div>
 
