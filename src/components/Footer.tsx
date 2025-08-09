@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <img src={footerImage} alt="Hope Foundation Logo" className="h-14 w-16 rounded-full" />
-              <span className="text-2xl font-bold">Hopefy</span>
+              <span className="text-2xl font-bold">Hope Foundation</span>
             </div>
             <p className="text-gray-300 mb-4 leading-relaxed">
               "We are a registered charity organization working in Pakistan for education, healthcare, and poverty alleviation. With your donations, we are improving thousands of lives."
