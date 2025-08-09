@@ -1,4 +1,3 @@
-import React from 'react';
 import { Heart, Phone, Mail, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
 
 const Footer = () => {
@@ -13,9 +12,7 @@ const Footer = () => {
               <span className="text-2xl font-bold">Hope Foundation</span>
             </div>
             <p className="text-gray-300 mb-4 leading-relaxed">
-              Hum ek registered charity organization hain jo Pakistan mein education, healthcare, 
-              aur poverty alleviation ke liye kaam kar rahi hai. Aapki donations se hum hazaron 
-              zindagiyaan behtar bana rahe hain.
+              "We are a registered charity organization working in Pakistan for education, healthcare, and poverty alleviation. With your donations, we are improving thousands of lives."
             </p>
             <div className="flex space-x-4">
               <Facebook className="h-6 w-6 text-gray-400 hover:text-white cursor-pointer transition-colors" />

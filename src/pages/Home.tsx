@@ -1,6 +1,6 @@
-import React from 'react';
 import { ArrowRight, Users, Heart, Target, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Home = () => {
   const stats = [
@@ -40,14 +40,17 @@ const Home = () => {
       <section className="relative bg-gradient-to-r from-red-600 to-red-800 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
               <h1 className="text-5xl font-bold mb-6 leading-tight">
                 Together We Can
                 <span className="block text-yellow-300">Change Lives</span>
               </h1>
               <p className="text-xl mb-8 text-red-100 leading-relaxed">
-                Hope Foundation Pakistan mein education, healthcare, aur poverty alleviation 
-                ke liye dedicated hai. Aapki chhoti si donation bhi kisi ki zindagi badal sakti hai.
+                "Hope Foundation is dedicated to education, healthcare, and poverty alleviation in Pakistan. Even your small donation can change someone’s life."
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link 
@@ -63,14 +66,18 @@ const Home = () => {
                   View Projects
                 </Link>
               </div>
-            </div>
-            <div className="relative">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
               <img 
-                src="https://images.pexels.com/photos/6995334/pexels-photo-6995334.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="https://images.pexels.com/photos/1720188/pexels-photo-1720188.jpeg"
                 alt="Children studying"
                 className="rounded-lg shadow-2xl"
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -80,13 +87,20 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
+              <motion.div
+                key={index}
+                className="text-center"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                viewport={{ once: true }}
+              >
                 <div className="bg-red-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                   <stat.icon className="h-8 w-8 text-white" />
                 </div>
                 <div className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
                 <div className="text-gray-600">{stat.label}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -98,7 +112,7 @@ const Home = () => {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Current Campaigns</h2>
             <p className="text-xl text-gray-600">
-              Ye hamare current projects hain jo aapki support ke intezar mein hain
+              "These are our current projects that are waiting for your support."
             </p>
           </div>
 
@@ -106,7 +120,14 @@ const Home = () => {
             {campaigns.map((campaign, index) => {
               const progress = (campaign.raised / campaign.goal) * 100;
               return (
-                <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <motion.div
+                  key={index}
+                  className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                >
                   <img 
                     src={campaign.image}
                     alt={campaign.title}
@@ -122,10 +143,13 @@ const Home = () => {
                         <span>Goal: Rs {campaign.goal.toLocaleString()}</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div 
-                          className="bg-red-600 h-2 rounded-full transition-all duration-300"
-                          style={{ width: `${progress}%` }}
-                        ></div>
+                        <motion.div 
+                          className="bg-red-600 h-2 rounded-full"
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${progress}%` }}
+                          transition={{ duration: 1 }}
+                          viewport={{ once: true }}
+                        ></motion.div>
                       </div>
                       <div className="text-right text-sm text-gray-600 mt-1">
                         {progress.toFixed(1)}% Complete
@@ -139,7 +163,7 @@ const Home = () => {
                       Support This Cause
                     </Link>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -149,16 +173,37 @@ const Home = () => {
       {/* Call to Action */}
       <section className="bg-red-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-4">Ready to Make a Difference?</h2>
-          <p className="text-xl mb-8 text-red-100">
-            Aapka har donation transparent aur secure hai. Hum complete accountability provide karte hain.
-          </p>
-          <Link 
-            to="/donate"
-            className="bg-yellow-500 text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-400 transition-colors inline-flex items-center"
+          <motion.h2
+            className="text-4xl font-bold mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            Start Donating Today <ArrowRight className="ml-2 h-5 w-5" />
-          </Link>
+            Ready to Make a Difference?
+          </motion.h2>
+          <motion.p
+            className="text-xl mb-8 text-red-100"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+           "Your every donation is transparent and secure. We provide complete accountability."
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            <Link 
+              to="/donate"
+              className="bg-yellow-500 text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-400 transition-colors inline-flex items-center"
+            >
+              Start Donating Today <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </motion.div>
         </div>
       </section>
     </div>

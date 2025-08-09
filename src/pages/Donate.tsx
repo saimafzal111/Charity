@@ -1,5 +1,23 @@
 import React, { useState } from 'react';
 import { CreditCard, Smartphone, Building, Shield, Eye, EyeOff } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      staggerChildren: 0.15,
+      when: "beforeChildren",
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
 
 const Donate = () => {
   const [amount, setAmount] = useState('');
@@ -25,25 +43,36 @@ const Donate = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would integrate with actual payment gateway
     alert(`Donation of Rs ${amount} submitted successfully! Payment method: ${paymentMethod}`);
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <motion.div 
+      className="min-h-screen bg-gray-50 py-12"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Header */}
-        <div className="text-center mb-12">
+        <motion.div className="text-center mb-12" variants={itemVariants}>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Make a Donation</h1>
           <p className="text-xl text-gray-600">
-            Aapki har donation secure aur transparent hai. Hum complete privacy maintain karte hain.
+            Your every donation is secure and transparent. We maintain complete privacy.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <motion.div className="grid grid-cols-1 lg:grid-cols-3 gap-8" variants={containerVariants}>
+
           {/* Donation Form */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow-lg p-8">
+          <motion.div className="lg:col-span-2" variants={itemVariants}>
+            <motion.div 
+              className="bg-white rounded-lg shadow-lg p-8"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Campaign Selection */}
                 <div>
@@ -52,7 +81,7 @@ const Donate = () => {
                   </label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {campaigns.map((campaign) => (
-                      <div
+                      <motion.div
                         key={campaign.id}
                         className={`p-4 border-2 rounded-lg cursor-pointer transition-colors ${
                           selectedCampaign === campaign.id
@@ -60,10 +89,12 @@ const Donate = () => {
                             : 'border-gray-200 hover:border-red-300'
                         }`}
                         onClick={() => setSelectedCampaign(campaign.id)}
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
                       >
                         <h3 className="font-semibold text-gray-900">{campaign.name}</h3>
                         <p className="text-sm text-gray-600">{campaign.description}</p>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
@@ -75,7 +106,7 @@ const Donate = () => {
                   </label>
                   <div className="grid grid-cols-3 gap-3 mb-4">
                     {predefinedAmounts.map((amt) => (
-                      <button
+                      <motion.button
                         key={amt}
                         type="button"
                         className={`p-3 border-2 rounded-lg font-semibold transition-colors ${
@@ -84,9 +115,11 @@ const Donate = () => {
                             : 'border-gray-200 text-gray-700 hover:border-red-300'
                         }`}
                         onClick={() => setAmount(amt.toString())}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                       >
                         Rs {amt.toLocaleString()}
-                      </button>
+                      </motion.button>
                     ))}
                   </div>
                   <input
@@ -100,9 +133,13 @@ const Donate = () => {
                 </div>
 
                 {/* Privacy Option */}
-                <div className="bg-gray-50 p-4 rounded-lg">
+                <motion.div 
+                  className="bg-gray-50 p-4 rounded-lg"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                >
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-3 cursor-pointer" onClick={() => setIsAnonymous(!isAnonymous)}>
                       {isAnonymous ? (
                         <EyeOff className="h-5 w-5 text-red-600" />
                       ) : (
@@ -129,7 +166,7 @@ const Donate = () => {
                       />
                     </button>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Payment Method */}
                 <div>
@@ -138,7 +175,7 @@ const Donate = () => {
                   </label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {paymentMethods.map((method) => (
-                      <div
+                      <motion.div
                         key={method.id}
                         className={`p-4 border-2 rounded-lg cursor-pointer transition-colors ${
                           paymentMethod === method.id
@@ -146,6 +183,8 @@ const Donate = () => {
                             : 'border-gray-200 hover:border-red-300'
                         }`}
                         onClick={() => setPaymentMethod(method.id)}
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
                       >
                         <div className="flex items-center space-x-3">
                           <method.icon className="h-6 w-6 text-red-600" />
@@ -154,26 +193,32 @@ const Donate = () => {
                             <p className="text-sm text-gray-600">{method.description}</p>
                           </div>
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
 
                 {/* Submit Button */}
-                <button
+                <motion.button
                   type="submit"
                   disabled={!amount || parseInt(amount) < 100}
-                  className="w-full bg-red-600 text-white py-4 px-6 rounded-lg font-semibold hover:bg-red-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+                  className="w-full bg-red-600 text-white py-4 px-6 rounded-lg font-semibold hover:bg-red-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex justify-center"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   Proceed to Payment - Rs {amount ? parseInt(amount).toLocaleString() : '0'}
-                </button>
+                </motion.button>
               </form>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Security & Trust Info */}
-          <div className="space-y-6">
-            <div className="bg-white rounded-lg shadow-lg p-6">
+          <motion.div className="space-y-6" variants={itemVariants}>
+            <motion.div
+              className="bg-white rounded-lg shadow-lg p-6"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+            >
               <div className="flex items-center space-x-3 mb-4">
                 <Shield className="h-8 w-8 text-green-600" />
                 <h3 className="text-lg font-semibold text-gray-900">100% Secure</h3>
@@ -184,9 +229,13 @@ const Donate = () => {
                 <li>• No data stored on our servers</li>
                 <li>• Complete donor privacy</li>
               </ul>
-            </div>
+            </motion.div>
 
-            <div className="bg-white rounded-lg shadow-lg p-6">
+            <motion.div
+              className="bg-white rounded-lg shadow-lg p-6"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+            >
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Why Donate?</h3>
               <ul className="space-y-3 text-sm text-gray-600">
                 <li className="flex items-start space-x-2">
@@ -206,22 +255,26 @@ const Donate = () => {
                   <span>Direct impact on communities</span>
                 </li>
               </ul>
-            </div>
+            </motion.div>
 
-            <div className="bg-red-50 rounded-lg p-6">
+            <motion.div
+              className="bg-red-50 rounded-lg p-6"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+            >
               <h3 className="text-lg font-semibold text-red-800 mb-2">Need Help?</h3>
               <p className="text-sm text-red-700 mb-3">
-                Donation process mein koi problem ho to contact karein:
+                If you face any issues during the donation process, please contact us:
               </p>
               <p className="text-sm text-red-700">
                 📞 +92-300-1234567<br />
                 ✉️ donate@hopefoundation.org
               </p>
-            </div>
-          </div>
-        </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
