@@ -225,17 +225,24 @@ const Contact = () => {
         </motion.div>
 
         {/* Map Section */}
-        <motion.div className="mt-12" variants={itemVariants}>
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Find Us</h2>
-            <div className="bg-gray-200 h-64 rounded-lg flex items-center justify-center">
-              <p className="text-gray-600">
-                Interactive Map will be integrated here<br />
-                (Google Maps or local mapping service)
-              </p>
-            </div>
-          </div>
-        </motion.div>
+<motion.div className="mt-12" variants={itemVariants}>
+  <div className="bg-white rounded-lg shadow-lg p-6">
+    <h2 className="text-2xl font-bold text-gray-900 mb-6">Find Us</h2>
+    <div className="rounded-lg overflow-hidden shadow-md" style={{ height: '400px' }}>
+      <iframe
+        title="Samundri Location"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3332.482778353385!2d72.9969689758582!3d31.010521379424454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391b14b5f74d22ff%3A0x1abf6704a107f7b7!2sSamundri%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2sus!4v1691656000000!5m2!1sen!2sus"
+        width="100%"
+        height="100%"
+        style={{ border: 0 }}
+        allowFullScreen={true}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      />
+    </div>
+  </div>
+</motion.div>
+
 
         {/* FAQ Section */}
         <motion.div className="mt-12" variants={itemVariants}>
